@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Summary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      padding: 2rem;
+    }
+
+    .summary-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #db2777;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .qty-btn {
+      background-color: #fcd6e6;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #db2777;
+    }
+
+    .qty-number {
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: right;
+      color: #db2777;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      background-color: #db2777;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #be185d;
+    }
+  </style>
+</head>
+<body>
+  <div class="summary-container">
+    <h2>Order Summary</h2>
+    <ul id="order-list"></ul>
+    <p class="total" id="total-price"></p>
+    <button class="btn" onclick="goToPersonalInfo()">Next: Personal Info</button>
+
+    <button class="btn" style="background-color: #f3f4f6; color: #db2777; margin-top: 1rem;" onclick="goToStore()">
+      Add more items
+    </button>
+    
+
+  <script>
+    const orderList = document.getElementById('order-list');
+    const totalPrice = document.getElementById('total-price');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // تأكد من وجود كمية لكل عنصر
+    cart = cart.map(item => {
+      if (!item.quantity) item.quantity = 1;
+      return item;
+    });
+
+    function renderCart() {
+      orderList.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const li = document.createElement('li');
+
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'item-info';
+        infoDiv.innerHTML = `<strong>${item.name}</strong><br>SAR ${item.price} × ${item.quantity}`;
+
+        const controlsDiv = document.createElement('div');
+        controlsDiv.className = 'quantity-controls';
+
+        const minusBtn = document.createElement('button');
+        minusBtn.textContent = '−';
+        minusBtn.className = 'qty-btn';
+        minusBtn.onclick = () => {
+          item.quantity--;
+          if (item.quantity <= 0) {
+            if (confirm(` ${item.name} will be deleted from the basket. Are you sure? `)) {
+              cart.splice(index, 1);
+            } else {
+              item.quantity = 1; // إلغاء الحذف
+            }
+          }
+          updateCart();
+        };
+
+        const qtySpan = document.createElement('span');
+        qtySpan.className = 'qty-number';
+        qtySpan.textContent = item.quantity;
+
+        const plusBtn = document.createElement('button');
+        plusBtn.textContent = '+';
+        plusBtn.className = 'qty-btn';
+        plusBtn.onclick = () => {
+          item.quantity++;
+          updateCart();
+        };
+
+        controlsDiv.appendChild(minusBtn);
+        controlsDiv.appendChild(qtySpan);
+        controlsDiv.appendChild(plusBtn);
+
+        li.appendChild(infoDiv);
+        li.appendChild(controlsDiv);
+
+        orderList.appendChild(li);
+
+        total += item.price * item.quantity;
+      });
+
+      totalPrice.textContent = `Total: SAR ${total}`;
+    }
+
+    function updateCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function goToPersonalInfo() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length === 0) {
+    alert("The shopping cart is empty. Please add products before proceeding.");
+  } else {
+    window.location.href = 'personal info.html';
+  }
+}
+
+
+    renderCart();
+
+    function goToStore() {
+  window.location.href = 'homey.html'; // غيّر هذا حسب اسم الصفحة الرئيسية أو صفحة المنتجات
+}
+
+  </script>
+</body>
+</html>

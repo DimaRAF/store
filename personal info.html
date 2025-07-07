@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Information</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      padding: 2rem;
+    }
+
+    .form-container {
+      max-width: 500px;
+      background: white;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #db2777;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background-color: #db2777;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #be185d;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Personal Information</h2>
+    <form id="orderForm" action="submit_order.php" method="post" onsubmit="return submitOrder(event)">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="full_name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="payment">Payment Method</label>
+      <select id="payment" name="payment_method" required>
+        <option value="">Select a method</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="applepay">Apple Pay</option>
+      </select>
+
+      <!-- Hidden inputs for cart and price -->
+      <input type="hidden" name="cart_data" id="cartDataInput" />
+      <input type="hidden" name="total_price" id="totalPriceInput" />
+
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+  </div>
+
+  <script>
+    function submitOrder(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (name[0] !== name[0].toUpperCase()) {
+        alert("The first letter of your name must be uppercase.");
+        return false;
+      }
+
+      if (!/^\d{10}$/.test(phone)) {
+        alert("Phone number must be exactly 10 digits.");
+        return false;
+      }
+
+      // Get cart and total price from sessionStorage
+      const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+      const total = parseFloat(sessionStorage.getItem("totalPrice")) || 0;
+
+      document.getElementById("cartDataInput").value = JSON.stringify(cart);
+      document.getElementById("totalPriceInput").value = total.toFixed(2);
+
+      // Optional: clear cart before redirect
+      sessionStorage.removeItem('cart');
+
+      // Submit the form manually
+      document.getElementById("orderForm").submit();
+      return true;
+    }
+  </script>
+</body>
+</html>

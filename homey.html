@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <title>Cake Store</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+    }
+
+    .header {
+      background-color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: #db2777;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: 0.3s;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    nav a:hover {
+      background-color: #fcd6e6;
+      color: #db2777;
+    }
+
+    .main-content {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-name {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .product-price {
+      color: #db2777;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background-color: #db2777;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #be185d;
+    }
+
+    .checkout-container {
+      text-align: center;
+      margin: 3rem auto;
+    }
+
+    footer {
+  background-color: #db2777;
+  color: white;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* يجعل العناصر في منتصف الارتفاع */
+  flex-wrap: wrap;
+}
+
+
+
+
+.social-media {
+  width: -50%; /* أو استخدم flex-basis */
+  min-width: 0px;
+}
+.contact {
+  text-align: left;
+  align-self: center;
+}
+
+
+.social-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.social-link i {
+  margin-right: 8px;
+}
+
+.social-link:hover {
+  text-decoration: underline;
+  color: #ffe4f0;
+}
+.contact i {
+  margin-right: 8px;
+  color: white; /* أو أي لون تريده */
+}
+
+
+    .slider {
+  width: 100%;
+  height: 400px; /* الارتفاع كما هو مطلوب */
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #db2777; /* إطار وردي حول السلايدر */
+  border-radius: 15px; /* لجعل الزوايا دائرية */
+}
+
+.slides {
+  display: flex;
+  width: 800%; /* 8 صور */
+  height: 100%;
+  animation: slide 8s steps(8) infinite;
+}
+
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* لضمان ظهور الصورة بالكامل */
+  flex-shrink: 0;
+  border-radius: 10px; /* إذا أردت زوايا دائرية للصورة أيضًا */
+}
+
+
+
+  @keyframes slide {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-700%); } /* انتقل إلى الصورة الثامنة */
+  }
+
+  .footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  gap: 10px;
+  flex: 1;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+
+
+  </style>
+</head>
+<body>
+  
+  
+  <header class="header">
+    <div class="header-content">
+      <img src="شعار2.png" alt="Cake Logo" class="logo-icon">
+      <a href="#" class="logo">CAKE STORE</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#pp">Products</a></li>
+        <li><a href="#dd">Contact Us</a></li>
+        <li><a href="order summary .html">Checkout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="slider">
+    <div class="slides">
+      <img src="wedding cake.jpeg" alt="Cake 1">
+      <img src="كيك ملون.jpeg" alt="Cake 2">
+      <img src="KitKat cake.jpeg" alt="Cake 3">
+      <img src="icecream cake.jpeg" alt="Cake 4">
+      <img src="graduation cake.jpg" alt="Cake 5">
+      <img src="choco-cake .jpeg" alt="Cake 6">
+      <img src="box cake.jpg" alt="Cake 7">
+      <img src="bday cake.jpeg" alt="Cake 8">
+    </div>
+  </div>
+
+  <main class="main-content">
+    <a id="pp"></a>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="KitKat cake.jpeg" class="product-image" alt="Kitkat Cake">
+        <div class="product-info">
+          <h2 class="product-name">Kitkat Cake</h2>
+          <p class="product-price">SAR 499</p>
+          <button class="btn" onclick="addToCart('KitKat Cake', 499)">Add to Order</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="icecream cake.jpeg" class="product-image" alt="Ice Cream Cake">
+        <div class="product-info">
+          <h2 class="product-name">Ice Cream Cake</h2>
+          <p class="product-price">SAR 549</p>
+          <button class="btn" onclick="addToCart('Ice Cream Cake', 549)">Add to Order</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="choco-cake .jpeg" class="product-image" alt="chocolate cake">
+        <div class="product-info">
+          <h2 class="product-name">Chocolate Cake</h2>
+          <p class="product-price">SAR 599</p>
+          <button class="btn" onclick="addToCart('Chocolate Cake', 599)">Add to Order</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="bday cake.jpeg" class="product-image" alt="Birthday Cake">
+        <div class="product-info">
+          <h2 class="product-name">Birthday Cake</h2>
+          <p class="product-price">SAR 500</p>
+          <button class="btn" onclick="addToCart('Birthday Cake', 500)">Add to Order</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="كيك ملون.jpeg" class="product-image" alt="Rainbow Cake">
+        <div class="product-info">
+          <h2 class="product-name">Rainbow Cake</h2>
+          <p class="product-price">SAR 300</p>
+          <button class="btn" onclick="addToCart('Rainbow Cake', 300)">Add to Order</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="wedding cake.jpeg" class="product-image" alt="wedding cake.jpeg">
+        <div class="product-info">
+          <h2 class="product-name">wedding cake</h2>
+          <p class="product-price">SAR 900</p>
+          <button class="btn" onclick="addToCart('wedding cake', 900)">Add to Order</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="graduation cake.jpg" class="product-image" alt="Graduation cake">
+        <div class="product-info">
+          <h2 class="product-name">Graduation cake</h2>
+          <p class="product-price">SAR 800</p>
+          <button class="btn" onclick="addToCart('Graduation cake', 800)">Add to Order</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="box cake.jpg" class="product-image" alt="Box cake">
+        <div class="product-info">
+          <h2 class="product-name">Box cake</h2>
+          <p class="product-price">SAR 120</p>
+          <button class="btn" onclick="addToCart('Box cake', 120)">Add to Order</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-container">
+      <button class="btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="contact">
+        <a id="dd"></a>
+        <h2>Contact Us</h2>
+        <p><i class="fas fa-envelope"></i> info@cakestore.com</p>
+        <p><i class="fas fa-phone"></i> +96650******</p>
+      </div>
+
+      <div class="footer-logo">
+        <img src="شعار.png" alt="Cake Logo" class="logo-icon">
+        <h2>CAKE STORE</h2>
+        
+      </div>
+      
+      <div class="social-media">
+        <h2>Follow Us</h2>
+        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i> Twitter</a>
+      </div>
+    </div>
+  </footer>
+  
+
+  <script>
+    // Add item to cart and store in localStorage
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name: name, price: price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(name + " added to cart.");
+    }
+
+    // Proceed to checkout
+    function proceedToCheckout() {
+      window.location.href = "order summary .html";
+    }
+  </script>
+
+</body>
+</html>
+
