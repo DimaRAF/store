@@ -116,112 +116,102 @@
     }
 
     footer {
-  background-color: #db2777;
-  color: white;
-  padding: 2rem;
-  margin-top: 4rem;
-}
+      background-color: #db2777;
+      color: white;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* يجعل العناصر في منتصف الارتفاع */
-  flex-wrap: wrap;
-}
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* Align items vertically center */
+      flex-wrap: wrap;
+    }
 
+    .social-media {
+      width: -50%; /* Or use flex-basis */
+      min-width: 0px;
+    }
+    .contact {
+      text-align: left;
+      align-self: center;
+    }
 
+    .social-link {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
 
+    .social-link i {
+      margin-right: 8px;
+    }
 
-.social-media {
-  width: -50%; /* أو استخدم flex-basis */
-  min-width: 0px;
-}
-.contact {
-  text-align: left;
-  align-self: center;
-}
-
-
-.social-link {
-  display: block;
-  color: white;
-  text-decoration: none;
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-}
-
-.social-link i {
-  margin-right: 8px;
-}
-
-.social-link:hover {
-  text-decoration: underline;
-  color: #ffe4f0;
-}
-.contact i {
-  margin-right: 8px;
-  color: white; /* أو أي لون تريده */
-}
-
+    .social-link:hover {
+      text-decoration: underline;
+      color: #ffe4f0;
+    }
+    .contact i {
+      margin-right: 8px;
+      color: white; /* Or any color you want */
+    }
 
     .slider {
-  width: 100%;
-  height: 400px; /* الارتفاع كما هو مطلوب */
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 5px solid #db2777; /* إطار وردي حول السلايدر */
-  border-radius: 15px; /* لجعل الزوايا دائرية */
-}
+      width: 100%;
+      height: 400px; /* Fixed height as required */
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid #db2777; /* Pink border around slider */
+      border-radius: 15px; /* Rounded corners */
+    }
 
-.slides {
-  display: flex;
-  width: 800%; /* 8 صور */
-  height: 100%;
-  animation: slide 8s steps(8) infinite;
-}
+    .slides {
+      display: flex;
+      width: 800%; /* 8 images */
+      height: 100%;
+      animation: slide 8s steps(8) infinite;
+    }
 
-.slides img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* لضمان ظهور الصورة بالكامل */
-  flex-shrink: 0;
-  border-radius: 10px; /* إذا أردت زوايا دائرية للصورة أيضًا */
-}
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Ensure full image visible */
+      flex-shrink: 0;
+      border-radius: 10px; /* Rounded corners for images */
+    }
 
+    @keyframes slide {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-700%); } /* Move to 8th image */
+    }
 
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      gap: 10px;
+      flex: 1;
+    }
 
-  @keyframes slide {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-700%); } /* انتقل إلى الصورة الثامنة */
-  }
-
-  .footer-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.5rem;
-  gap: 10px;
-  flex: 1;
-}
-
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
 
   </style>
 </head>
 <body>
-  
-  
+
   <header class="header">
     <div class="header-content">
       <img src="شعار2.png" alt="Cake Logo" class="logo-icon">
@@ -343,7 +333,6 @@
       <div class="footer-logo">
         <img src="شعار.png" alt="Cake Logo" class="logo-icon">
         <h2>CAKE STORE</h2>
-        
       </div>
       
       <div class="social-media">
@@ -365,7 +354,7 @@
       alert(name + " added to cart.");
     }
 
-    // Proceed to checkout
+    // Proceed to checkout page
     function proceedToCheckout() {
       window.location.href = "order summary .html";
     }
